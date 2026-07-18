@@ -1,0 +1,29 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+publish/
+
+# IDE / tooling
+.vs/
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# .NET
+project.lock.json
+*.nupkg
+
+# Android signing (never commit real keystores/secrets)
+*.keystore
+*.jks
+*.p12
+keystore.properties
+
+# App runtime data / caches
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db

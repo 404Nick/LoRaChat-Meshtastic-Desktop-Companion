@@ -1,0 +1,65 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-android;net10.0-desktop</TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Keep the code namespace/assembly as "LoRaChat" even though the project folder is
+         "LoRaChat.App", so the generated XAML x:Class values (LoRaChat.App, LoRaChat.MainPage)
+         and all ported Core-facing code line up. -->
+    <RootNamespace>LoRaChat</RootNamespace>
+    <AssemblyName>LoRaChat</AssemblyName>
+
+    <!-- Display name -->
+    <ApplicationTitle>LoRaChat</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>com.lorachat.companion</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <!-- Package Publisher -->
+    <ApplicationPublisher>LoRaChat</ApplicationPublisher>
+    <!-- Package Description -->
+    <Description>LoRaChat powered by Uno Platform.</Description>
+
+    <!--
+      UnoFeatures are used to quickly add and manage features enabled for your app.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>
+      SkiaRenderer;
+      WebView;
+    </UnoFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoRaChat.Core\LoRaChat.Core.csproj" />
+  </ItemGroup>
+
+  <!-- Custom tactical app icon + splash. The SVGs are auto-detected by convention; these Update the
+       background color so the icon/splash sit on the app's dark palette (not the default white). -->
+  <ItemGroup>
+    <UnoIcon Update="Assets\Icons\icon.svg" Color="#0A0D10" />
+    <UnoSplashScreen Update="Assets\Splash\splash_screen.svg" Color="#0A0D10" />
+  </ItemGroup>
+
+  <!-- Desktop head only: real serial ports + DPAPI-backed secret store. Not valid on Android. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-desktop'">
+    <PackageReference Include="System.IO.Ports" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" />
+  </ItemGroup>
+
+  <!-- The HTML/JS UI bundle. On desktop it's copied next to the app so the WebView serves it via a
+       virtual-host mapping. On Android it ships as packaged assets that PlatformServices extracts to
+       the app's files dir at startup. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-desktop'">
+    <Content Include="WebAssets\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
+    <AndroidAsset Include="WebAssets\**\*.*" Link="WebAssets\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

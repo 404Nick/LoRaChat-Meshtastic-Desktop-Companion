@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>LoRaChat.Core</RootNamespace>
+    <!--
+      Platform-agnostic backend: protocol, services, and the UI bridge. Contains NO UI and NO
+      platform APIs (no System.Windows.Forms, no System.IO.Ports, no Android/Win32). Everything
+      platform-specific is reached through the interfaces in Abstractions/, implemented by the
+      head projects (LoRaChat.App/Platforms/*).
+    -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MQTTnet" />
+    <PackageReference Include="protobuf-net" />
+  </ItemGroup>
+
+</Project>

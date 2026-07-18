@@ -1,0 +1,11 @@
+<Page x:Class="LoRaChat.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:LoRaChat"
+      xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+      Background="#0A0D10">
+  <Grid>
+    <!-- The entire UI is the HTML/JS bundle rendered here, exactly as in the original WebView2 host. -->
+    <controls:WebView2 x:Name="Web" />
+  </Grid>
+</Page>

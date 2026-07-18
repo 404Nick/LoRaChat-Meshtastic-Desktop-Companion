@@ -1,0 +1,19 @@
+<Project ToolsVersion="15.0">
+  <!--
+    To update the version of Uno, you should instead update the Sdk version in the global.json file.
+
+    See https://aka.platform.uno/using-uno-sdk for more information.
+    See https://aka.platform.uno/using-uno-sdk#implicit-packages for more information regarding the Implicit Packages.
+  -->
+  <ItemGroup>
+    <!-- Cross-platform MQTT client for the global-map feed (used by LoRaChat.Core). -->
+    <PackageVersion Include="MQTTnet" Version="4.3.7.1207" />
+    <!-- Pure-managed protobuf (cross-platform incl. Android) for the native Meshtastic protocol. -->
+    <PackageVersion Include="protobuf-net" Version="3.2.56" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Desktop-only device I/O + secret storage (referenced conditionally by the desktop head). -->
+    <PackageVersion Include="System.IO.Ports" Version="10.0.0" />
+    <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="10.0.0" />
+  </ItemGroup>
+</Project>

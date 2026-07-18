@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LoRaChat.App/LoRaChat.App.csproj" />
+  <Project Path="LoRaChat.Core/LoRaChat.Core.csproj" />
+</Solution>
